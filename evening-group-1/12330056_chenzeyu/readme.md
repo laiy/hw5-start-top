@@ -1,14 +1,14 @@
-# hw4-Asynchronous-JavaScript
+# hw5-start-top
 
-Homework 5 for course Software Process Improvement.
+Homework 5 for course Software Process Improvement, SYSU.
 
 ## How to run?
  - Enter current directory.
- - Excecute the next instructor in terminal or command window.
+ - Excecute the next instructor in terminal or command window. 
         node server.js
  - Visit the following urls with browser.
         http:127.0.0.1:3000/S?/index.html
-  where the question mark stands for No. of the tasks, ranging from 1 to 5.
+  where the question mark stands for No. of the tasks, ranging from 1 to 5, inclusive.
 
 ## Link
  * [S1]
