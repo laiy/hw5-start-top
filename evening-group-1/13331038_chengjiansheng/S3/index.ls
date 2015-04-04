@@ -19,7 +19,12 @@ class Robot
     @state = 'unclicked'
 
     /* this function is used to start the click in-order as well as the callback function of a click*/
-    @click-next= !-> if @cursor is @sequence.length then @bubble.click! else @state='clicked';@click-cur-button-and-get-next!click!
+    @click-next= !-> 
+        if @cursor is @sequence.length
+            @bubble.click!
+        else
+            @state='clicked'
+            @click-cur-button-and-get-next!click!
 
     @click-cur-button-and-get-next=!->
         cur = @sequence[@cursor++];
@@ -29,7 +34,6 @@ class Robot
         Robot.state = 'clicked'
         for dom in $ '#control-ring .button'
             dom.click!
-            console.log (dom)
 
 class Button
     @buttons = []
@@ -56,8 +60,9 @@ class Button
     bubble-check:->
         if (@@@all-button-is-done!)
             $ '#info-bar' .add-class 'blue' .remove-class 'grey'
-            $ '#info-bar' .click!
-            console.log("success")
+            set-timeout !->
+                $ '#info-bar' .click!
+            ,  350
 
     fetch-number-and-show: !-> 
         $.get '/?timestamp='+ Math.random!, (number, result)!~>

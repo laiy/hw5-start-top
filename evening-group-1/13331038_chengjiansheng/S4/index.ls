@@ -47,7 +47,9 @@ class Robot
 
     @click-at-random-order=!->
         if @cursor is @sequence.length
-            @bubble.click!
+            set-timeout !->
+                Robot.bubble.click!
+            , 350
         else
             @state='ran-clicked';
             set-timeout  !->

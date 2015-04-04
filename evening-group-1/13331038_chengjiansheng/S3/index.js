@@ -45,7 +45,6 @@
       for (i$ = 0, len$ = (ref$ = $('#control-ring .button')).length; i$ < len$; ++i$) {
         dom = ref$[i$];
         dom.click();
-        console.log(dom);
       }
     };
     function Robot(){}
@@ -116,8 +115,9 @@
     prototype.bubbleCheck = function(){
       if (this.constructor.allButtonIsDone()) {
         $('#info-bar').addClass('blue').removeClass('grey');
-        $('#info-bar').click();
-        return console.log("success");
+        return setTimeout(function(){
+          $('#info-bar').click();
+        }, 350);
       }
     };
     prototype.fetchNumberAndShow = function(){

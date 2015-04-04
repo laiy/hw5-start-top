@@ -28,10 +28,14 @@
     /* this function is used to start the click in-order as well as the callback function of a click*/
     Robot.clickNext = function(){
       if (this.cursor === this.sequence.length) {
-        this.bubble.click();
+        setTimeout(function(){
+          Robot.bubble.click();
+        }, 350);
       } else {
-        this.state = 'clicked';
-        this.clickCurButtonAndGetNext().click();
+        Robot.state = 'clicked';
+        setTimeout(function(){
+          Robot.clickCurButtonAndGetNext().click();
+        }, 400);
       }
     };
     Robot.clickCurButtonAndGetNext = function(){
@@ -109,7 +113,7 @@
     };
     prototype.fetchNumberAndShow = function(){
       var this$ = this;
-      $.get('/api/random', function(number, result){
+      $.get('/', function(number, result){
         if (this$.state === 'waiting') {
           this$.redDot.text(number);
           this$.constructor.enableAllOtherButtons(this$);
@@ -156,10 +160,8 @@
   };
   addResettingWhenLeaveApb = function(){
     $('#bottom-positioner').on('mouseleave', function(event){
-      var bubble2;
       Button.resetAll();
-      bubble2 = $('#info-bar');
-      bubble2.text('');
+      $('#info-bar').text('');
       Robot.cursor = 0;
       Robot.state = 'unclicked';
     });
