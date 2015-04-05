@@ -32,9 +32,8 @@ class Button
 		@dom.find \.unread .text '...'
 
 	reset: !->
-		alert \hhhh
 		@dom.add-class \enable
-		@dom.find \unread .text ''
+		@dom.find \.unread .text ''
 		@dom.find \.unread .css \display, \none
 
 	fectch-number-and-show: !-> $.get '/', (number, result)!~>
@@ -53,9 +52,8 @@ calculator =
 	reset: !-> @sum = 0
 
 reset = ->
-	alert \step1
 	bubble = $ \#info-bar
-	bubble.find 'unread' .text ''
+	bubble.find \.unread .text ''
 	calculator.reset!
 	Button.reset-all!
 	bubble.remove-class \enable
@@ -65,12 +63,16 @@ init-for-s1 = ->
 	for let dom, i in $ \.button
 		button = new Button ($ dom)
 
+	container = $ \#at-plus-container
+	container.mouseleave !->
+		reset!
+
+
 	bubble = $ \#info-bar
 	bubble.click !-> if bubble.has-class \enable
 		bubble.find \.unread .text calculator.sum
 		bubble.remove-class \enable
 
 $ ->
-	$ \#at-plus-container .onmouseleave = reset
 	init-for-s1!
 
